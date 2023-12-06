@@ -4,7 +4,8 @@ using HarmonyLib;
 
 namespace CompanyExecutive
 {
-    [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
+    [BepInPlugin("SoulWithMae.CompanyExecutive", PluginInfo.PLUGIN_NAME, "3.0.0")]
+    [BepInDependency("atomic.terminalapi")]
     public class Plugin : BaseUnityPlugin
     {
         public static ConfigEntry<bool> Enabled;
@@ -22,6 +23,8 @@ namespace CompanyExecutive
             OverrideMoney = Config.Bind("General", "OverrideMoney", true, "Whether to override the starting money or just add to it.");
             
             _harmony.PatchAll(typeof(TerminalPatch));
+
+            TerminalConfig.Init();
             
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
         }

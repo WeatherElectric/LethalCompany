@@ -5,6 +5,13 @@ Control how much money you start with, or just get infinite money each level.
 
 Works in multiplayer, other players do not need the mod.
 
+## Terminal Commands
+
+* executive give : Gives you money based on what the MoneyToGive pref is
+* executive toggle : Toggles the mod
+* executive consistent : Toggles ConsistentGive
+* executive override : Toggles OverrideMoney
+
 ## Preferences
 
 Enabled = Self explanatory.
