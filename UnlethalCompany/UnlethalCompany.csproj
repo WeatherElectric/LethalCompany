@@ -26,6 +26,7 @@
       <None Remove="NuGet.Config" />
       <None Remove="References\**" />
       <None Remove=".gitignore" />
+      <None Remove="README.md" />
     </ItemGroup>
 
     <ItemGroup>
