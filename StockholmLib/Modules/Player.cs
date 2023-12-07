@@ -10,71 +10,41 @@ namespace StockholmLib.Modules;
 /// </summary>
 public static class Player
 {
-    /// <summary>
-    /// Gets the username of the local player
-    /// </summary>
-    /// <returns>String of username</returns>
-    public static string GetLocalPlayerName()
+    public static PlayerControllerB LocalPlayer { get; private set; }
+    public static string LocalPlayerName { get; private set; }
+    public static List<PlayerControllerB> ConnectedPlayers { get; private set; }
+    public static List<PlayerControllerB> AllPlayers { get; private set; }
+    public static List<string> ConnectedPlayerNames { get; private set; }
+    public static List<string> AllPlayerNames { get; private set; }
+
+    internal static void Init()
     {
-        var startOfRound = Object.FindObjectOfType<StartOfRound>();
-        return startOfRound.localPlayerController.playerUsername;
+        Hooking.OnLocalPlayerSpawn += OnLocalPlayerSpawn;
+        Hooking.OnPlayerJoin += OnPlayerJoin;
+        Hooking.OnSceneUnloaded += OnSceneUnloaded;
     }
 
-    /// <summary>
-    /// Gets all player usernames.
-    /// </summary>
-    /// <returns>List of strings of usernames</returns>
-    public static List<string> GetAllPlayerNames()
+    private static void OnLocalPlayerSpawn(PlayerInfo playerInfo)
     {
-        var startOfRound = Object.FindObjectOfType<StartOfRound>();
-        var players = startOfRound.allPlayerScripts;
-        List<PlayerControllerB> playerList = players.Where(player => player.isPlayerControlled).ToList();
-        return playerList.Select(player => player.playerUsername).ToList();
+        LocalPlayer = playerInfo.Player;
+        LocalPlayerName = playerInfo.Username;
     }
     
-    /// <summary>
-    /// Gets all player usernames except the local player.
-    /// </summary>
-    /// <returns>List of strings of usernames</returns>
-    public static List<string> GetConnectedPlayerNames()
+    private static void OnPlayerJoin(PlayerInfo playerInfo)
     {
-        var startOfRound = Object.FindObjectOfType<StartOfRound>();
-        var players = startOfRound.OtherClients;
-        List<PlayerControllerB> playerList = players.Where(player => player.isPlayerControlled).ToList();
-        return playerList.Select(player => player.playerUsername).ToList();
+        ConnectedPlayers.Add(playerInfo.Player);
+        ConnectedPlayerNames.Add(playerInfo.Username);
+        AllPlayers.Add(playerInfo.Player);
+        AllPlayerNames.Add(playerInfo.Username);
     }
-    
-    /// <summary>
-    /// Gets the local player's player controller.
-    /// </summary>
-    /// <returns>PlayerControllerB</returns>
-    public static PlayerControllerB GetLocalPlayer()
+
+    private static void OnSceneUnloaded(LevelInfo levelInfo)
     {
-        var startOfRound = Object.FindObjectOfType<StartOfRound>();
-        return startOfRound.localPlayerController;
-    }
-    
-    /// <summary>
-    /// Gets all connected player controllers.
-    /// </summary>
-    /// <returns>List of PlayerControllerBs</returns>
-    public static List<PlayerControllerB> GetConnectedPlayers()
-    {
-        var startOfRound = Object.FindObjectOfType<StartOfRound>();
-        var players = startOfRound.OtherClients;
-        List<PlayerControllerB> playerList = players.Where(player => player.isPlayerControlled).ToList();
-        return playerList;
-    }
-    
-    /// <summary>
-    /// Gets all player controllers.
-    /// </summary>
-    /// <returns>List of PlayerControllerB</returns>
-    public static List<PlayerControllerB> GetAllPlayers()
-    {
-        var startOfRound = Object.FindObjectOfType<StartOfRound>();
-        var players = startOfRound.allPlayerScripts;
-        List<PlayerControllerB> playerList = players.Where(player => player.isPlayerControlled).ToList();
-        return playerList;
+        LocalPlayer = null;
+        LocalPlayerName = null;
+        ConnectedPlayers.Clear();
+        ConnectedPlayerNames.Clear();
+        AllPlayers.Clear();
+        AllPlayerNames.Clear();
     }
 }

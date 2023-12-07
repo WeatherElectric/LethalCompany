@@ -10,7 +10,7 @@ internal static class PlayerDeathManager
         Hooking.OnAnyPlayerDeath += OnPlayerDeath;
     }
     
-    private static void OnPlayerDeath(object sender, PlayerInfo playerInfo)
+    private static void OnPlayerDeath(PlayerInfo playerInfo)
     {
         var username = playerInfo.Username;
         var position = playerInfo.Player.transform.position;

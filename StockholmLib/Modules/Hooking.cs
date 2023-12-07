@@ -1,6 +1,8 @@
 ﻿using System;
 using GameNetcodeStuff;
 using HarmonyLib;
+using Unity.Netcode;
+using UnityEngine.SceneManagement;
 
 namespace StockholmLib.Modules;
 
@@ -14,6 +16,10 @@ public class Hooking
     /// </summary>
     public static event OnLocalPlayerSpawn OnLocalPlayerSpawn;
     /// <summary>
+    /// Event that is fired when any player joins.
+    /// </summary>
+    public static event OnPlayerJoin OnPlayerJoin;
+    /// <summary>
     /// Event that is fired when any player dies.
     /// </summary>
     public static event OnAnyPlayerDeath OnAnyPlayerDeath;
@@ -25,33 +31,59 @@ public class Hooking
     /// Event that is fired when any connected player dies.
     /// </summary>
     public static event OnConnectedPlayerDeath OnConnectedPlayerDeath;
+    /// <summary>
+    /// Event that is fired when a scene is loaded.
+    /// </summary>
+    public static event OnSceneLoaded OnSceneLoaded;
+    /// <summary>
+    /// Event that is fired when a scene is unloaded.
+    /// </summary>
+    public static event OnSceneUnloaded OnSceneUnloaded;
     
     internal void onLocalPlayerSpawn(PlayerInfo playerInfo)
     {
-        OnLocalPlayerSpawn?.Invoke(this, playerInfo);
+        OnLocalPlayerSpawn?.Invoke(playerInfo);
+    }
+    
+    internal void onPlayerJoin(PlayerInfo playerInfo)
+    {
+        OnPlayerJoin?.Invoke(playerInfo);
     }
     
     internal void onAnyPlayerDeath(PlayerInfo playerInfo)
     {
-        OnAnyPlayerDeath?.Invoke(this, playerInfo);
+        OnAnyPlayerDeath?.Invoke(playerInfo);
     }
     
     internal void onLocalPlayerDeath(PlayerInfo playerInfo)
     {
-        OnLocalPlayerDeath?.Invoke(this, playerInfo);
+        OnLocalPlayerDeath?.Invoke(playerInfo);
     }
 
     internal void onConnectedPlayerDeath(PlayerInfo playerInfo)
     {
-        OnConnectedPlayerDeath?.Invoke(this, playerInfo);
+        OnConnectedPlayerDeath?.Invoke(playerInfo);
+    }
+    
+    internal void onSceneLoaded(LevelInfo levelInfo)
+    {
+        OnSceneLoaded?.Invoke(levelInfo);
+    }
+    
+    internal void onSceneUnloaded(LevelInfo levelInfo)
+    {
+        OnSceneUnloaded?.Invoke(levelInfo);
     }
 }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-public delegate void OnLocalPlayerSpawn(object sender, PlayerInfo playerInfo);
-public delegate void OnAnyPlayerDeath(object sender, PlayerInfo playerInfo);
-public delegate void OnLocalPlayerDeath(object sender, PlayerInfo playerInfo);
-public delegate void OnConnectedPlayerDeath(object sender, PlayerInfo playerInfo);
+public delegate void OnLocalPlayerSpawn(PlayerInfo playerInfo);
+public delegate void OnPlayerJoin(PlayerInfo playerInfo);
+public delegate void OnAnyPlayerDeath(PlayerInfo playerInfo);
+public delegate void OnLocalPlayerDeath(PlayerInfo playerInfo);
+public delegate void OnConnectedPlayerDeath(PlayerInfo playerInfo);
+public delegate void OnSceneLoaded(LevelInfo levelInfo);
+public delegate void OnSceneUnloaded(LevelInfo levelInfo);
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
 internal static class HookingPatches
@@ -59,11 +91,42 @@ internal static class HookingPatches
     private static readonly Hooking HookingInstance = new();
     
     [HarmonyPatch(typeof(PlayerControllerB))]
-    internal static class PlayerDeath
+    internal static class PlayerPatch
     {
         [HarmonyPostfix]
+        [HarmonyPatch("Start")]
+        private static void PostfixStart(PlayerControllerB __instance)
+        {
+            if (!__instance.IsLocalPlayer) return;
+            HookingInstance.onLocalPlayerSpawn(new PlayerInfo(__instance, 
+                __instance.causeOfDeath, 
+                __instance.health, 
+                __instance.playerUsername, 
+                __instance.isPlayerAlone, 
+                __instance.isPlayerDead));
+        }
+        
+        [HarmonyPostfix]
+        [HarmonyPatch("KillPlayerServerRpc")]
+        private static void PostfixRpc(PlayerControllerB __instance)
+        {
+            HookingInstance.onConnectedPlayerDeath(new PlayerInfo(__instance, 
+                __instance.causeOfDeath, 
+                __instance.health, 
+                __instance.playerUsername, 
+                __instance.isPlayerAlone, 
+                __instance.isPlayerDead));
+            HookingInstance.onAnyPlayerDeath(new PlayerInfo(__instance, 
+                __instance.causeOfDeath, 
+                __instance.health, 
+                __instance.playerUsername, 
+                __instance.isPlayerAlone, 
+                __instance.isPlayerDead));
+        }
+        
+        [HarmonyPostfix]
         [HarmonyPatch("KillPlayer")]
-        private static void Postfix(PlayerControllerB __instance)
+        private static void PostfixKill(PlayerControllerB __instance)
         {
             if (!__instance.IsLocalPlayer) return;
             HookingInstance.onLocalPlayerDeath(new PlayerInfo(__instance, 
@@ -79,22 +142,12 @@ internal static class HookingPatches
                 __instance.isPlayerAlone, 
                 __instance.isPlayerDead));
         }
-    }
-    
-    [HarmonyPatch(typeof(PlayerControllerB))]
-    internal static class ConnectedPlayerDeath
-    {
+
         [HarmonyPostfix]
-        [HarmonyPatch("KillPlayerServerRpc")]
-        private static void Postfix(PlayerControllerB __instance)
+        [HarmonyPatch("ConnectClientToPlayerObject")]
+        private static void PostfixConnectClient(PlayerControllerB __instance)
         {
-            HookingInstance.onConnectedPlayerDeath(new PlayerInfo(__instance, 
-                __instance.causeOfDeath, 
-                __instance.health, 
-                __instance.playerUsername, 
-                __instance.isPlayerAlone, 
-                __instance.isPlayerDead));
-            HookingInstance.onAnyPlayerDeath(new PlayerInfo(__instance, 
+            HookingInstance.onPlayerJoin(new PlayerInfo(__instance, 
                 __instance.causeOfDeath, 
                 __instance.health, 
                 __instance.playerUsername, 
@@ -103,20 +156,21 @@ internal static class HookingPatches
         }
     }
     
-    [HarmonyPatch(typeof(PlayerControllerB))]
-    internal static class PlayerSpawn
+    [HarmonyPatch(typeof(NetworkSceneManager))]
+    public static class ScenePatch
     {
         [HarmonyPostfix]
-        [HarmonyPatch("Start")]
-        private static void Postfix(PlayerControllerB __instance)
+        [HarmonyPatch("LoadScene")]
+        public static void PostfixLoadScene(ref string sceneName)
         {
-            if (!__instance.IsLocalPlayer) return;
-            HookingInstance.onLocalPlayerSpawn(new PlayerInfo(__instance, 
-                __instance.causeOfDeath, 
-                __instance.health, 
-                __instance.playerUsername, 
-                __instance.isPlayerAlone, 
-                __instance.isPlayerDead));
+            HookingInstance.onSceneLoaded(new LevelInfo(sceneName, null, null));
+        }
+        
+        [HarmonyPostfix]
+        [HarmonyPatch("UnloadScene")]
+        public static void PostfixUnloadScene(ref Scene scene)
+        {
+            HookingInstance.onSceneUnloaded(new LevelInfo(scene.name, scene.buildIndex, scene.isLoaded));
         }
     }
 }
@@ -168,5 +222,22 @@ public class PlayerInfo : EventArgs
         Username = username;
         IsPlayerAlone = alone;
         IsPlayerDead = dead;
+    }
+}
+
+/// <summary>
+/// Information about a scene
+/// </summary>
+public class LevelInfo : EventArgs
+{
+    public string Name { get; }
+    public int? BuildIndex { get; }
+    public bool? IsLoaded { get; }
+    
+    public LevelInfo(string name, int? buildIndex, bool? isLoaded)
+    {
+        Name = name;
+        BuildIndex = buildIndex;
+        IsLoaded = isLoaded ?? false;
     }
 }

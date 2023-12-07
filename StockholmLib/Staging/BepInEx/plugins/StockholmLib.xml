@@ -59,42 +59,6 @@
             <param name="name"></param>
             <returns>String of clean name</returns>
         </member>
-        <member name="M:StockholmLib.Modules.HelperMethods.GetLocalPlayerName">
-            <summary>
-            Gets the username of the local player
-            </summary>
-            <returns>String of username</returns>
-        </member>
-        <member name="M:StockholmLib.Modules.HelperMethods.GetAllPlayerNames">
-            <summary>
-            Gets all player usernames.
-            </summary>
-            <returns>List of strings of usernames</returns>
-        </member>
-        <member name="M:StockholmLib.Modules.HelperMethods.GetConnectedPlayerNames">
-            <summary>
-            Gets all player usernames except the local player.
-            </summary>
-            <returns>List of strings of usernames</returns>
-        </member>
-        <member name="M:StockholmLib.Modules.HelperMethods.GetLocalPlayer">
-            <summary>
-            Gets the local player's player controller.
-            </summary>
-            <returns>PlayerControllerB</returns>
-        </member>
-        <member name="M:StockholmLib.Modules.HelperMethods.GetConnectedPlayers">
-            <summary>
-            Gets all connected player controllers.
-            </summary>
-            <returns>List of PlayerControllerBs</returns>
-        </member>
-        <member name="M:StockholmLib.Modules.HelperMethods.GetAllPlayers">
-            <summary>
-            Gets all player controllers.
-            </summary>
-            <returns>List of PlayerControllerB</returns>
-        </member>
         <member name="T:StockholmLib.Modules.Hooking">
             <summary>
             Easier hooks to run code at specific times.
@@ -103,6 +67,11 @@
         <member name="E:StockholmLib.Modules.Hooking.OnLocalPlayerSpawn">
             <summary>
             Event that is fired when the local player spawns.
+            </summary>
+        </member>
+        <member name="E:StockholmLib.Modules.Hooking.OnPlayerJoin">
+            <summary>
+            Event that is fired when any player joins.
             </summary>
         </member>
         <member name="E:StockholmLib.Modules.Hooking.OnAnyPlayerDeath">
@@ -118,6 +87,16 @@
         <member name="E:StockholmLib.Modules.Hooking.OnConnectedPlayerDeath">
             <summary>
             Event that is fired when any connected player dies.
+            </summary>
+        </member>
+        <member name="E:StockholmLib.Modules.Hooking.OnSceneLoaded">
+            <summary>
+            Event that is fired when a scene is loaded.
+            </summary>
+        </member>
+        <member name="E:StockholmLib.Modules.Hooking.OnSceneUnloaded">
+            <summary>
+            Event that is fired when a scene is unloaded.
             </summary>
         </member>
         <member name="T:StockholmLib.Modules.PlayerInfo">
@@ -166,6 +145,11 @@
             <param name="alone"></param>
             <param name="dead"></param>
         </member>
+        <member name="T:StockholmLib.Modules.LevelInfo">
+            <summary>
+            Information about a scene
+            </summary>
+        </member>
         <member name="T:StockholmLib.Modules.JsonUtilities">
             <summary>
             Utilities for JSON.
@@ -194,6 +178,11 @@
             <param name="url"></param>
             <typeparam name="T"></typeparam>
             <returns>Deserialized object of the json</returns>
+        </member>
+        <member name="T:StockholmLib.Modules.Player">
+            <summary>
+            Easy access to parts of the player.
+            </summary>
         </member>
         <member name="T:StockholmLib.Plugin">
             <summary>

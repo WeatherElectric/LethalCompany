@@ -25,19 +25,18 @@ public class Plugin : BaseUnityPlugin
         Logger.LogInfo($"Plugin {PluginGuid} is loaded, version {PluginVersion}.");
         StaticLogger = Logger;
         Harmony.PatchAll();
-        Hooking.OnLocalPlayerSpawn += OnLocalPlayerSpawn;
-        Hooking.OnAnyPlayerDeath += OnAnyPlayerDeath;
+        Player.Init();
+        Hooking.OnSceneLoaded += SceneLoaded;
+        Hooking.OnSceneUnloaded += SceneUnloaded;
     }
 
-    private static void OnLocalPlayerSpawn(object sender, PlayerInfo playerInfo)
+    private static void SceneLoaded(LevelInfo levelInfo)
     {
-        StaticLogger.LogInfo($"Local player name is {playerInfo.Username}");
-        StaticLogger.LogInfo($"Local player object is {playerInfo.Player.gameObject}");
-        StaticLogger.LogInfo($"Local player has {playerInfo.Health} health");
+        StaticLogger.LogInfo("Scene loaded!");
     }
     
-    private static void OnAnyPlayerDeath(object sender, PlayerInfo playerInfo)
+    private static void SceneUnloaded(LevelInfo levelInfo)
     {
-        StaticLogger.LogInfo($"{playerInfo.Username} died of {playerInfo.CauseOfDeath.ToString()}.");
+        StaticLogger.LogInfo("Scene unloaded!");
     }
 }
