@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-namespace WrongLibWithTheWrongTechnique.Modules;
+namespace StockholmLib.Modules;
 
 /// <summary>
 /// Manages assetbundle loading from embedded resources.

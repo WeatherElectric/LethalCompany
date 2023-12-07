@@ -1,9 +1,9 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
-using WrongLibWithTheWrongTechnique.Modules;
+using StockholmLib.Modules;
 
-namespace WrongLibWithTheWrongTechnique;
+namespace StockholmLib;
 
 /// <summary>
 /// The main class of the mod.

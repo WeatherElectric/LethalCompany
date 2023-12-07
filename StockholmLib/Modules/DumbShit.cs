@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Newtonsoft.Json;
-using WrongLibWithTheWrongTechnique.Modules.Json;
 
-namespace WrongLibWithTheWrongTechnique.Modules.DumbShit;
+namespace StockholmLib.Modules;
 
 /// <summary>
 /// Random nonsense.

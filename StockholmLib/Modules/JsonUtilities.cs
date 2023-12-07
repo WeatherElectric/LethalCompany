@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using UnityEngine.Networking;
 
-namespace WrongLibWithTheWrongTechnique.Modules.Json;
+namespace StockholmLib.Modules;
 
 /// <summary>
 /// Utilities for JSON.

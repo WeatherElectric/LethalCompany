@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using GameNetcodeStuff;
 using UnityEngine;
 
-namespace WrongLibWithTheWrongTechnique.Modules;
+namespace StockholmLib.Modules;
 
 /// <summary>
 /// Helper methods of various kinds.

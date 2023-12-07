@@ -2,7 +2,7 @@
 using GameNetcodeStuff;
 using HarmonyLib;
 
-namespace WrongLibWithTheWrongTechnique.Modules;
+namespace StockholmLib.Modules;
 
 /// <summary>
 /// Easier hooks to run code at specific times.

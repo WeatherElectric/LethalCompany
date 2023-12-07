@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyExecutive", "Company
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnlethalCompany", "UnlethalCompany\UnlethalCompany.csproj", "{F57B8FD4-0B79-4BBD-878A-FFC1AB947997}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WrongLibWithTheWrongTechnique", "WrongLibWithTheWrongTechnique\WrongLibWithTheWrongTechnique.csproj", "{F9B71D8E-182E-45C2-9CB6-95ECE2593770}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockholmLib", "StockholmLib\StockholmLib.csproj", "{F9B71D8E-182E-45C2-9CB6-95ECE2593770}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackMesaInternTransferProgram", "BlackMesaInternTransferProgram\BlackMesaInternTransferProgram.csproj", "{43306DAC-166A-4928-ABD9-4BFB887CF9D7}"
 EndProject
