@@ -74,12 +74,25 @@ internal static class PlayerDeathPatch
                 break;
         }
     }
+
+    private static void PlayAudio(AudioClip sound, Vector3 position)
+    {
+        if (Plugin.AlertEnemies.Value)
+        {
+            RoundManager.Instance.PlayAudibleNoise(position, Plugin.NoiseRange.Value, Plugin.NoiseLoudness.Value);
+            AudioSource.PlayClipAtPoint(sound, position, Plugin.Volume.Value);
+        }
+        else
+        {
+            AudioSource.PlayClipAtPoint(sound, position, Plugin.Volume.Value);
+        }
+    }
     
     private static void UnknownDeath(string username, Vector3 position)
     {
         var randint = Random.Range(0, Assets.Resources.Unknown.Count);
         var sound = Assets.Resources.Unknown[randint];
-        AudioSource.PlayClipAtPoint(sound, position, Plugin.Volume.Value);
+        PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to unknown. Playing {sound.name} at {position.ToString()}");
     }
     
@@ -87,7 +100,7 @@ internal static class PlayerDeathPatch
     {
         var randint = Random.Range(0, Assets.Resources.Bludgeoning.Count);
         var sound = Assets.Resources.Bludgeoning[randint];
-        AudioSource.PlayClipAtPoint(sound, position, Plugin.Volume.Value);
+        PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to bludgeoning. Playing {sound.name} at {position.ToString()}");
     }
     
@@ -95,7 +108,7 @@ internal static class PlayerDeathPatch
     {
         var randint = Random.Range(0, Assets.Resources.Gravity.Count);
         var sound = Assets.Resources.Gravity[randint];
-        AudioSource.PlayClipAtPoint(sound, position, Plugin.Volume.Value);
+        PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to gravity. Playing {sound.name} at {position.ToString()}");
     }
     
@@ -103,7 +116,7 @@ internal static class PlayerDeathPatch
     {
         var randint = Random.Range(0, Assets.Resources.Blast.Count);
         var sound = Assets.Resources.Blast[randint];
-        AudioSource.PlayClipAtPoint(sound, position, Plugin.Volume.Value);
+        PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to blast. Playing {sound.name} at {position.ToString()}");
     }
     
@@ -111,7 +124,7 @@ internal static class PlayerDeathPatch
     {
         var randint = Random.Range(0, Assets.Resources.Strangulation.Count);
         var sound = Assets.Resources.Strangulation[randint];
-        AudioSource.PlayClipAtPoint(sound, position, Plugin.Volume.Value);
+        PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to strangulation. Playing {sound.name} at {position.ToString()}");
     }
     
@@ -119,7 +132,7 @@ internal static class PlayerDeathPatch
     {
         var randint = Random.Range(0, Assets.Resources.Suffocation.Count);
         var sound = Assets.Resources.Suffocation[randint];
-        AudioSource.PlayClipAtPoint(sound, position, Plugin.Volume.Value);
+        PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to suffocation. Playing {sound.name} at {position.ToString()}");
     }
     
@@ -127,7 +140,7 @@ internal static class PlayerDeathPatch
     {
         var randint = Random.Range(0, Assets.Resources.Mauling.Count);
         var sound = Assets.Resources.Mauling[randint];
-        AudioSource.PlayClipAtPoint(sound, position, Plugin.Volume.Value);
+        PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to mauling. Playing {sound.name} at {position.ToString()}");
     }
     
@@ -135,7 +148,7 @@ internal static class PlayerDeathPatch
     {
         var randint = Random.Range(0, Assets.Resources.Gunshots.Count);
         var sound = Assets.Resources.Gunshots[randint];
-        AudioSource.PlayClipAtPoint(sound, position, Plugin.Volume.Value);
+        PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to gunshots. Playing {sound.name} at {position.ToString()}");
     }
     
@@ -143,7 +156,7 @@ internal static class PlayerDeathPatch
     {
         var randint = Random.Range(0, Assets.Resources.Crushing.Count);
         var sound = Assets.Resources.Crushing[randint];
-        AudioSource.PlayClipAtPoint(sound, position, Plugin.Volume.Value);
+        PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to crushing. Playing {sound.name} at {position.ToString()}");
     }
     
@@ -151,7 +164,7 @@ internal static class PlayerDeathPatch
     {
         var randint = Random.Range(0, Assets.Resources.Drowning.Count);
         var sound = Assets.Resources.Drowning[randint];
-        AudioSource.PlayClipAtPoint(sound, position, Plugin.Volume.Value);
+        PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to drowning. Playing {sound.name} at {position.ToString()}");
     }
     
@@ -159,7 +172,7 @@ internal static class PlayerDeathPatch
     {
         var randint = Random.Range(0, Assets.Resources.Abandoned.Count);
         var sound = Assets.Resources.Abandoned[randint];
-        AudioSource.PlayClipAtPoint(sound, position, Plugin.Volume.Value);
+        PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to abandoned. Playing {sound.name} at {position.ToString()}");
     }
     
@@ -167,7 +180,7 @@ internal static class PlayerDeathPatch
     {
         var randint = Random.Range(0, Assets.Resources.Electrocution.Count);
         var sound = Assets.Resources.Electrocution[randint];
-        AudioSource.PlayClipAtPoint(sound, position, Plugin.Volume.Value);
+        PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to electrocution. Playing {sound.name} at {position.ToString()}");
     }
 }
