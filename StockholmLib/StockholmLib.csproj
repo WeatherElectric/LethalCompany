@@ -11,12 +11,12 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <DocumentationFile>bin\Debug\WrongLibWithTheWrongTechnique.xml</DocumentationFile>
+      <DocumentationFile>bin\Debug\netstandard2.1\StockholmLib.xml</DocumentationFile>
       <NoWarn>1701;1702;1591</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <DocumentationFile>bin\Release\WrongLibWithTheWrongTechnique.xml</DocumentationFile>
+      <DocumentationFile>bin\Release\netstandard2.1\StockholmLib.xml</DocumentationFile>
       <NoWarn>1701;1702;1591</NoWarn>
     </PropertyGroup>
 
