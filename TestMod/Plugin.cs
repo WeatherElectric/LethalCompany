@@ -6,13 +6,19 @@ using WrongLibWithTheWrongTechnique.Modules;
 
 namespace TestMod;
 
-[BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
+internal static class ModInfo
+{
+    public const string PLUGIN_GUID = "SoulWithMae.TestMod";
+    public const string PLUGIN_NAME = "TestMod";
+    public const string PLUGIN_VERSION = "1.0.0";
+}
+
+[BepInPlugin(ModInfo.PLUGIN_GUID, ModInfo.PLUGIN_NAME, ModInfo.PLUGIN_VERSION)]
 public class Plugin : BaseUnityPlugin
 {
     internal static ManualLogSource StaticLogger;
     private void Awake()
     {
-        // Plugin startup logic
         Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
         StaticLogger = Logger;
         Assets.Load();

@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnlethalCompany", "Unlethal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WrongLibWithTheWrongTechnique", "WrongLibWithTheWrongTechnique\WrongLibWithTheWrongTechnique.csproj", "{F9B71D8E-182E-45C2-9CB6-95ECE2593770}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMod", "TestMod\TestMod.csproj", "{39439D19-FA9A-4D33-8D62-ED3A75515253}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackMesaInternTransferProgram", "BlackMesaInternTransferProgram\BlackMesaInternTransferProgram.csproj", "{43306DAC-166A-4928-ABD9-4BFB887CF9D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,9 +32,9 @@ Global
 		{F9B71D8E-182E-45C2-9CB6-95ECE2593770}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9B71D8E-182E-45C2-9CB6-95ECE2593770}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9B71D8E-182E-45C2-9CB6-95ECE2593770}.Release|Any CPU.Build.0 = Release|Any CPU
-		{39439D19-FA9A-4D33-8D62-ED3A75515253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39439D19-FA9A-4D33-8D62-ED3A75515253}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39439D19-FA9A-4D33-8D62-ED3A75515253}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39439D19-FA9A-4D33-8D62-ED3A75515253}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43306DAC-166A-4928-ABD9-4BFB887CF9D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43306DAC-166A-4928-ABD9-4BFB887CF9D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43306DAC-166A-4928-ABD9-4BFB887CF9D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43306DAC-166A-4928-ABD9-4BFB887CF9D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

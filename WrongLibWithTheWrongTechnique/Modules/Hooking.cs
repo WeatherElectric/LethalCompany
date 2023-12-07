@@ -10,12 +10,14 @@ public delegate void OnPlayerDeath(object sender, PlayerDeathEventArgs e);
 
 public class PlayerDeathEventArgs : EventArgs
 {
-    public PlayerDeathEventArgs(PlayerControllerB player)
+    public PlayerDeathEventArgs(PlayerControllerB player, CauseOfDeath causeOfDeath)
     {
         Player = player;
+        CauseOfDeath = causeOfDeath;
     }
 
     public PlayerControllerB Player { get; }
+    public CauseOfDeath CauseOfDeath { get; }
 }
 
 public delegate void OnLocalPlayerSpawn(object sender, PlayerSpawnEventArgs e);
@@ -58,7 +60,7 @@ internal static class HookingPatches
         [HarmonyPatch(nameof(PlayerControllerB.KillPlayer))]
         private static void Postfix(PlayerControllerB __instance)
         {
-            HookingInstance.onPlayerDeath(new PlayerDeathEventArgs(__instance));
+            HookingInstance.onPlayerDeath(new PlayerDeathEventArgs(__instance, __instance.causeOfDeath));
         }
     }
     
