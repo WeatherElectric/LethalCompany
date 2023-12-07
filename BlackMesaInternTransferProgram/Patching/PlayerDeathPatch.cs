@@ -10,7 +10,7 @@ internal static class PlayerDeathPatch
     internal static class PlayerDeath
     {
         [HarmonyPostfix]
-        [HarmonyPatch(nameof(PlayerControllerB.KillPlayer))]
+        [HarmonyPatch("KillPlayer")]
         private static void Postfix(PlayerControllerB __instance)
         {
             OnPlayerDeath(__instance.playerUsername, __instance.causeOfDeath, __instance.transform.position);
