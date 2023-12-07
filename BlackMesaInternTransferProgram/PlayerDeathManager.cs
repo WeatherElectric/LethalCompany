@@ -1,35 +1,20 @@
-﻿using GameNetcodeStuff;
-using HarmonyLib;
+﻿using StockholmLib.Modules;
 using UnityEngine;
 
-namespace BlackMesaInternTransferProgram.Patching;
+namespace BlackMesaInternTransferProgram;
 
-internal static class PlayerDeathPatch
+internal static class PlayerDeathManager
 {
-    [HarmonyPatch(typeof(PlayerControllerB))]
-    internal static class LocalPlayerDeath
+    public static void Init()
     {
-        [HarmonyPostfix]
-        [HarmonyPatch("KillPlayer")]
-        private static void Postfix(PlayerControllerB __instance)
-        {
-            OnPlayerDeath(__instance.playerUsername, __instance.causeOfDeath, __instance.transform.position);
-        }
+        Hooking.OnAnyPlayerDeath += OnPlayerDeath;
     }
     
-    [HarmonyPatch(typeof(PlayerControllerB))]
-    internal static class ServerPlayerDeath
+    private static void OnPlayerDeath(object sender, PlayerInfo playerInfo)
     {
-        [HarmonyPostfix]
-        [HarmonyPatch("KillPlayerServerRpc")]
-        private static void Postfix(PlayerControllerB __instance)
-        {
-            OnPlayerDeath(__instance.playerUsername, __instance.causeOfDeath, __instance.transform.position);
-        }
-    }
-    
-    private static void OnPlayerDeath(string username, CauseOfDeath causeOfDeath, Vector3 position)
-    {
+        var username = playerInfo.Username;
+        var position = playerInfo.Player.transform.position;
+        var causeOfDeath = playerInfo.CauseOfDeath;
         switch (causeOfDeath)
         {
             case CauseOfDeath.Unknown:
@@ -90,96 +75,96 @@ internal static class PlayerDeathPatch
     
     private static void UnknownDeath(string username, Vector3 position)
     {
-        var randint = Random.Range(0, Assets.Resources.Unknown.Count);
-        var sound = Assets.Resources.Unknown[randint];
+        var randint = Random.Range(0, Resources.Unknown.Count);
+        var sound = Resources.Unknown[randint];
         PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to unknown. Playing {sound.name} at {position.ToString()}");
     }
     
     private static void BludgeoningDeath(string username, Vector3 position)
     {
-        var randint = Random.Range(0, Assets.Resources.Bludgeoning.Count);
-        var sound = Assets.Resources.Bludgeoning[randint];
+        var randint = Random.Range(0, Resources.Bludgeoning.Count);
+        var sound = Resources.Bludgeoning[randint];
         PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to bludgeoning. Playing {sound.name} at {position.ToString()}");
     }
     
     private static void GravityDeath(string username, Vector3 position)
     {
-        var randint = Random.Range(0, Assets.Resources.Gravity.Count);
-        var sound = Assets.Resources.Gravity[randint];
+        var randint = Random.Range(0, Resources.Gravity.Count);
+        var sound = Resources.Gravity[randint];
         PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to gravity. Playing {sound.name} at {position.ToString()}");
     }
     
     private static void BlastDeath(string username, Vector3 position)
     {
-        var randint = Random.Range(0, Assets.Resources.Blast.Count);
-        var sound = Assets.Resources.Blast[randint];
+        var randint = Random.Range(0, Resources.Blast.Count);
+        var sound = Resources.Blast[randint];
         PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to blast. Playing {sound.name} at {position.ToString()}");
     }
     
     private static void StrangulationDeath(string username, Vector3 position)
     {
-        var randint = Random.Range(0, Assets.Resources.Strangulation.Count);
-        var sound = Assets.Resources.Strangulation[randint];
+        var randint = Random.Range(0, Resources.Strangulation.Count);
+        var sound = Resources.Strangulation[randint];
         PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to strangulation. Playing {sound.name} at {position.ToString()}");
     }
     
     private static void SuffocationDeath(string username, Vector3 position)
     {
-        var randint = Random.Range(0, Assets.Resources.Suffocation.Count);
-        var sound = Assets.Resources.Suffocation[randint];
+        var randint = Random.Range(0, Resources.Suffocation.Count);
+        var sound = Resources.Suffocation[randint];
         PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to suffocation. Playing {sound.name} at {position.ToString()}");
     }
     
     private static void MaulingDeath(string username, Vector3 position)
     {
-        var randint = Random.Range(0, Assets.Resources.Mauling.Count);
-        var sound = Assets.Resources.Mauling[randint];
+        var randint = Random.Range(0, Resources.Mauling.Count);
+        var sound = Resources.Mauling[randint];
         PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to mauling. Playing {sound.name} at {position.ToString()}");
     }
     
     private static void GunshotsDeath(string username, Vector3 position)
     {
-        var randint = Random.Range(0, Assets.Resources.Gunshots.Count);
-        var sound = Assets.Resources.Gunshots[randint];
+        var randint = Random.Range(0, Resources.Gunshots.Count);
+        var sound = Resources.Gunshots[randint];
         PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to gunshots. Playing {sound.name} at {position.ToString()}");
     }
     
     private static void CrushingDeath(string username, Vector3 position)
     {
-        var randint = Random.Range(0, Assets.Resources.Crushing.Count);
-        var sound = Assets.Resources.Crushing[randint];
+        var randint = Random.Range(0, Resources.Crushing.Count);
+        var sound = Resources.Crushing[randint];
         PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to crushing. Playing {sound.name} at {position.ToString()}");
     }
     
     private static void DrowningDeath(string username, Vector3 position)
     {
-        var randint = Random.Range(0, Assets.Resources.Drowning.Count);
-        var sound = Assets.Resources.Drowning[randint];
+        var randint = Random.Range(0, Resources.Drowning.Count);
+        var sound = Resources.Drowning[randint];
         PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to drowning. Playing {sound.name} at {position.ToString()}");
     }
     
     private static void AbandonedDeath(string username, Vector3 position)
     {
-        var randint = Random.Range(0, Assets.Resources.Abandoned.Count);
-        var sound = Assets.Resources.Abandoned[randint];
+        var randint = Random.Range(0, Resources.Abandoned.Count);
+        var sound = Resources.Abandoned[randint];
         PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to abandoned. Playing {sound.name} at {position.ToString()}");
     }
     
     private static void ElectrocutionDeath(string username, Vector3 position)
     {
-        var randint = Random.Range(0, Assets.Resources.Electrocution.Count);
-        var sound = Assets.Resources.Electrocution[randint];
+        var randint = Random.Range(0, Resources.Electrocution.Count);
+        var sound = Resources.Electrocution[randint];
         PlayAudio(sound, position);
         Plugin.StaticLogger.LogInfo($"{username} died to electrocution. Playing {sound.name} at {position.ToString()}");
     }

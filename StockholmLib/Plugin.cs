@@ -13,8 +13,8 @@ namespace StockholmLib;
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
 public class Plugin : BaseUnityPlugin
 {
-    private const string PluginGuid = "SoulWithMae.WrongLibWithTheWrongTechnique";
-    private const string PluginName = "WrongLibWithTheWrongTechnique";
+    private const string PluginGuid = "SoulWithMae.StockholmLib";
+    private const string PluginName = "StockholmLib";
     private const string PluginVersion = "1.0.0";
     
     internal static ManualLogSource StaticLogger;

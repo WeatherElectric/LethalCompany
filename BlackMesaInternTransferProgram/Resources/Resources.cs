@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
+using StockholmLib.Modules;
 using UnityEngine;
 
-namespace BlackMesaInternTransferProgram.Assets;
+namespace BlackMesaInternTransferProgram;
 
 internal static class Resources
 {
