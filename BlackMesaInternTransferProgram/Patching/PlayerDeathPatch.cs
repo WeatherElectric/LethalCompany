@@ -7,10 +7,21 @@ namespace BlackMesaInternTransferProgram.Patching;
 internal static class PlayerDeathPatch
 {
     [HarmonyPatch(typeof(PlayerControllerB))]
-    internal static class PlayerDeath
+    internal static class LocalPlayerDeath
     {
         [HarmonyPostfix]
         [HarmonyPatch("KillPlayer")]
+        private static void Postfix(PlayerControllerB __instance)
+        {
+            OnPlayerDeath(__instance.playerUsername, __instance.causeOfDeath, __instance.transform.position);
+        }
+    }
+    
+    [HarmonyPatch(typeof(PlayerControllerB))]
+    internal static class ServerPlayerDeath
+    {
+        [HarmonyPostfix]
+        [HarmonyPatch("KillPlayerServerRpc")]
         private static void Postfix(PlayerControllerB __instance)
         {
             OnPlayerDeath(__instance.playerUsername, __instance.causeOfDeath, __instance.transform.position);
