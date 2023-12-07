@@ -25,6 +25,7 @@
     <ItemGroup>
       <None Remove="NuGet.Config" />
       <None Remove="README.md" />
+      <None Remove="Staging\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -50,9 +51,14 @@
 
     <ItemGroup>
       <EmbeddedResource Include="Resources\Audio.bundle" />
+      <EmbeddedResource Remove="Staging\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Staging\**" />
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-      <Exec Command="COPY &quot;$(TargetPath)&quot; &quot;H:\Games\Steam\steamapps\common\Lethal Company\BepInEx\plugins&quot;" />
+      <Exec Command="COPY &quot;$(TargetPath)&quot; &quot;H:\Games\Steam\steamapps\common\Lethal Company\BepInEx\plugins&quot;&#xA;COPY &quot;$(TargetPath)&quot; &quot;$(ProjectDir)/Staging/BepInEx/plugins&quot;" />
     </Target>
 </Project>

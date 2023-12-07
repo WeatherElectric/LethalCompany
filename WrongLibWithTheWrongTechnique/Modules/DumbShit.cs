@@ -5,8 +5,15 @@ using WrongLibWithTheWrongTechnique.Modules.Json;
 
 namespace WrongLibWithTheWrongTechnique.Modules.DumbShit;
 
+/// <summary>
+/// Random nonsense.
+/// </summary>
 public static class DumbShit
 {
+    /// <summary>
+    /// Gets a random IP address.
+    /// </summary>
+    /// <returns>String of IP</returns>
     public static string GetRandomIP()
     {
         var random = new Random();
@@ -14,6 +21,10 @@ public static class DumbShit
         return ip;
     }
     
+    /// <summary>
+    /// Gets a random MAC address.
+    /// </summary>
+    /// <returns>String of MAC</returns>
     public static string GetRandomMacAddress()
     {
         var random = new Random();
@@ -31,6 +42,10 @@ public static class DumbShit
     
     private const string AddressAPI = "https://random-data-api.com/api/v2/addresses";
     // These are fake addresses.
+    /// <summary>
+    /// Gets a random address from a random data API.
+    /// </summary>
+    /// <returns>String of address</returns>
     public static string GetRandomAddress()
     {
         var json = JsonUtilities.GetJsonFromURL(AddressAPI);

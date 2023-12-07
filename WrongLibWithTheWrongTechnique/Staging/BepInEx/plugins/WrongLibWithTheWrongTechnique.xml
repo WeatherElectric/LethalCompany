@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WrongLibWithTheWrongTechnique</name>
+    </assembly>
+    <members>
+        <member name="T:WrongLibWithTheWrongTechnique.Modules.AssetLoader">
+            <summary>
+            Manages assetbundle loading from embedded resources.
+            </summary>
+        </member>
+        <member name="M:WrongLibWithTheWrongTechnique.Modules.AssetLoader.LoadEmbeddedAssetBundle(System.Reflection.Assembly,System.String)">
+            <summary>
+            Loads an embedded assetbundle
+            </summary>
+        </member>
+        <member name="M:WrongLibWithTheWrongTechnique.Modules.AssetLoader.LoadPersistentAsset``1(UnityEngine.AssetBundle,System.String)">
+            <summary>
+            Loads an asset from an assetbundle
+            </summary>
+        </member>
+        <member name="M:WrongLibWithTheWrongTechnique.Modules.AssetLoader.GetResourceBytes(System.Reflection.Assembly,System.String)">
+            <summary>
+            Gets the raw bytes of an embedded resource
+            </summary>
+        </member>
+        <member name="T:WrongLibWithTheWrongTechnique.Modules.DumbShit.DumbShit">
+            <summary>
+            Random nonsense.
+            </summary>
+        </member>
+        <member name="M:WrongLibWithTheWrongTechnique.Modules.DumbShit.DumbShit.GetRandomIP">
+            <summary>
+            Gets a random IP address.
+            </summary>
+            <returns>String of IP</returns>
+        </member>
+        <member name="M:WrongLibWithTheWrongTechnique.Modules.DumbShit.DumbShit.GetRandomMacAddress">
+            <summary>
+            Gets a random MAC address.
+            </summary>
+            <returns>String of MAC</returns>
+        </member>
+        <member name="M:WrongLibWithTheWrongTechnique.Modules.DumbShit.DumbShit.GetRandomAddress">
+            <summary>
+            Gets a random address from a random data API.
+            </summary>
+            <returns>String of address</returns>
+        </member>
+        <member name="T:WrongLibWithTheWrongTechnique.Modules.HelperMethods">
+            <summary>
+            Helper methods of various kinds.
+            </summary>
+        </member>
+        <member name="M:WrongLibWithTheWrongTechnique.Modules.HelperMethods.GetCleanObjectName(System.String)">
+            <summary>
+            Gets the name of the object without the (Clone) or [24] at the end.
+            </summary>
+            <param name="name"></param>
+            <returns>String of clean name</returns>
+        </member>
+        <member name="M:WrongLibWithTheWrongTechnique.Modules.HelperMethods.GetLocalPlayerName">
+            <summary>
+            Gets the username of the local player
+            </summary>
+            <returns>String of username</returns>
+        </member>
+        <member name="M:WrongLibWithTheWrongTechnique.Modules.HelperMethods.GetAllPlayerNames">
+            <summary>
+            Gets all player usernames.
+            </summary>
+            <returns>List of strings of usernames</returns>
+        </member>
+        <member name="M:WrongLibWithTheWrongTechnique.Modules.HelperMethods.GetConnectedPlayerNames">
+            <summary>
+            Gets all player usernames except the local player.
+            </summary>
+            <returns>List of strings of usernames</returns>
+        </member>
+        <member name="M:WrongLibWithTheWrongTechnique.Modules.HelperMethods.GetLocalPlayer">
+            <summary>
+            Gets the local player's player controller.
+            </summary>
+            <returns>PlayerControllerB</returns>
+        </member>
+        <member name="M:WrongLibWithTheWrongTechnique.Modules.HelperMethods.GetConnectedPlayers">
+            <summary>
+            Gets all connected player controllers.
+            </summary>
+            <returns>List of PlayerControllerBs</returns>
+        </member>
+        <member name="M:WrongLibWithTheWrongTechnique.Modules.HelperMethods.GetAllPlayers">
+            <summary>
+            Gets all player controllers.
+            </summary>
+            <returns>List of PlayerControllerB</returns>
+        </member>
+        <member name="T:WrongLibWithTheWrongTechnique.Modules.Hooking">
+            <summary>
+            Easier hooks to run code at specific times.
+            </summary>
+        </member>
+        <member name="E:WrongLibWithTheWrongTechnique.Modules.Hooking.OnLocalPlayerSpawn">
+            <summary>
+            Event that is fired when the local player spawns.
+            </summary>
+        </member>
+        <member name="E:WrongLibWithTheWrongTechnique.Modules.Hooking.OnAnyPlayerDeath">
+            <summary>
+            Event that is fired when any player dies.
+            </summary>
+        </member>
+        <member name="E:WrongLibWithTheWrongTechnique.Modules.Hooking.OnLocalPlayerDeath">
+            <summary>
+            Event that is fired when the local player dies.
+            </summary>
+        </member>
+        <member name="E:WrongLibWithTheWrongTechnique.Modules.Hooking.OnConnectedPlayerDeath">
+            <summary>
+            Event that is fired when any connected player dies.
+            </summary>
+        </member>
+        <member name="T:WrongLibWithTheWrongTechnique.Modules.PlayerInfo">
+            <summary>
+            Information about a player.
+            </summary>
+        </member>
+        <member name="P:WrongLibWithTheWrongTechnique.Modules.PlayerInfo.Player">
+            <summary>
+            The player controller of the player.
+            </summary>
+        </member>
+        <member name="P:WrongLibWithTheWrongTechnique.Modules.PlayerInfo.CauseOfDeath">
+            <summary>
+            The cause of death of the player.
+            </summary>
+        </member>
+        <member name="P:WrongLibWithTheWrongTechnique.Modules.PlayerInfo.Health">
+            <summary>
+            The health of the player.
+            </summary>
+        </member>
+        <member name="P:WrongLibWithTheWrongTechnique.Modules.PlayerInfo.Username">
+            <summary>
+            The username of the player.
+            </summary>
+        </member>
+        <member name="P:WrongLibWithTheWrongTechnique.Modules.PlayerInfo.IsPlayerAlone">
+            <summary>
+            Whether or not the player is alone.
+            </summary>
+        </member>
+        <member name="P:WrongLibWithTheWrongTechnique.Modules.PlayerInfo.IsPlayerDead">
+            <summary>
+            Whether or not the player is dead.
+            </summary>
+        </member>
+        <member name="M:WrongLibWithTheWrongTechnique.Modules.PlayerInfo.#ctor(GameNetcodeStuff.PlayerControllerB,CauseOfDeath,System.Int32,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Information about a player.
+            </summary>
+            <param name="player"></param>
+            <param name="causeOfDeath"></param>
+            <param name="health"></param>
+            <param name="username"></param>
+            <param name="alone"></param>
+            <param name="dead"></param>
+        </member>
+        <member name="T:WrongLibWithTheWrongTechnique.Modules.Json.JsonUtilities">
+            <summary>
+            Utilities for JSON.
+            </summary>
+        </member>
+        <member name="M:WrongLibWithTheWrongTechnique.Modules.Json.JsonUtilities.GetJsonFromURL(System.String)">
+            <summary>
+            Gets the JSON from a url.
+            </summary>
+            <param name="url"></param>
+            <returns>JSON content</returns>
+        </member>
+        <member name="M:WrongLibWithTheWrongTechnique.Modules.Json.JsonUtilities.ReadJson``1(System.String,System.Boolean)">
+            <summary>
+            Reads JSON from a file or string of content.
+            </summary>
+            <param name="json"></param>
+            <param name="isFile"></param>
+            <typeparam name="T"></typeparam>
+            <returns>Deserialized object of the json</returns>
+        </member>
+        <member name="M:WrongLibWithTheWrongTechnique.Modules.Json.JsonUtilities.ReadJsonFromURL``1(System.String)">
+            <summary>
+            Reads JSON from a url.
+            </summary>
+            <param name="url"></param>
+            <typeparam name="T"></typeparam>
+            <returns>Deserialized object of the json</returns>
+        </member>
+        <member name="T:WrongLibWithTheWrongTechnique.Plugin">
+            <summary>
+            The main class of the mod.
+            <see cref="T:BepInEx.BaseUnityPlugin"/>
+            <see cref="T:BepInEx.BepInPlugin"/>
+            </summary>
+        </member>
+    </members>
+</doc>

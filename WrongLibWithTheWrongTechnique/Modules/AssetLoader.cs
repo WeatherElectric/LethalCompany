@@ -23,7 +23,7 @@ public static class AssetLoader
                 using Stream str = assembly.GetManifestResourceStream(name);
                 using MemoryStream memoryStream = new MemoryStream();
                 
-                str.CopyTo(memoryStream);
+                str?.CopyTo(memoryStream);
                 Plugin.StaticLogger.LogInfo("Loading assetBundle from data, please be patient...");
                 byte[] resource = memoryStream.ToArray();
                 
@@ -59,13 +59,12 @@ public static class AssetLoader
             {
                 if (resource.Contains(name))
                 {
-                    using (Stream resFilestream = assembly.GetManifestResourceStream(resource))
-                    {
-                        if (resFilestream == null) return null;
-                        byte[] byteArr = new byte[resFilestream.Length];
-                        resFilestream.Read(byteArr, 0, byteArr.Length);
-                        return byteArr;
-                    }
+                    using Stream resFilestream = assembly.GetManifestResourceStream(resource);
+                    if (resFilestream == null) return null;
+                    byte[] byteArr = new byte[resFilestream.Length];
+                    // ReSharper disable once UnusedVariable
+                    var read = resFilestream.Read(byteArr, 0, byteArr.Length);
+                    return byteArr;
                 }
             }
             return null;

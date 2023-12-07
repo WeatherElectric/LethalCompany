@@ -5,36 +5,39 @@ using WrongLibWithTheWrongTechnique.Modules;
 
 namespace WrongLibWithTheWrongTechnique;
 
-internal static class ModInfo
-{
-    public const string PluginGuid = "SoulWithMae.WrongLibWithTheWrongTechnique";
-    public const string PluginName = "WrongLibWithTheWrongTechnique";
-    public const string PluginVersion = "1.0.0";
-}
-
-[BepInPlugin(ModInfo.PluginGuid, ModInfo.PluginName, ModInfo.PluginVersion)]
+/// <summary>
+/// The main class of the mod.
+/// <see cref="BaseUnityPlugin"/>
+/// <see cref="BepInPlugin"/>
+/// </summary>
+[BepInPlugin(PluginGuid, PluginName, PluginVersion)]
 public class Plugin : BaseUnityPlugin
 {
+    private const string PluginGuid = "SoulWithMae.WrongLibWithTheWrongTechnique";
+    private const string PluginName = "WrongLibWithTheWrongTechnique";
+    private const string PluginVersion = "1.0.0";
+    
     internal static ManualLogSource StaticLogger;
-    internal static readonly Harmony Harmony = new(ModInfo.PluginGuid);
+    private static readonly Harmony Harmony = new(PluginGuid);
+    
     private void Awake()
     {
-        Logger.LogInfo($"Plugin {ModInfo.PluginGuid} is loaded, version {ModInfo.PluginVersion}.");
+        Logger.LogInfo($"Plugin {PluginGuid} is loaded, version {PluginVersion}.");
         StaticLogger = Logger;
         Harmony.PatchAll();
         Hooking.OnLocalPlayerSpawn += OnLocalPlayerSpawn;
-        Hooking.OnPlayerDeath += OnPlayerDeath;
+        Hooking.OnAnyPlayerDeath += OnAnyPlayerDeath;
     }
 
-    private static void OnLocalPlayerSpawn(object sender, PlayerSpawnEventArgs e)
+    private static void OnLocalPlayerSpawn(object sender, PlayerInfo playerInfo)
     {
-        StaticLogger.LogInfo($"Local player name is {e.Player.playerUsername}");
-        StaticLogger.LogInfo($"Local player object is {e.Player.name}");
-        StaticLogger.LogInfo($"Local player has {e.Player.health} health");
+        StaticLogger.LogInfo($"Local player name is {playerInfo.Username}");
+        StaticLogger.LogInfo($"Local player object is {playerInfo.Player.gameObject}");
+        StaticLogger.LogInfo($"Local player has {playerInfo.Health} health");
     }
     
-    private static void OnPlayerDeath(object sender, PlayerDeathEventArgs e)
+    private static void OnAnyPlayerDeath(object sender, PlayerInfo playerInfo)
     {
-        StaticLogger.LogInfo($"{e.Player.playerUsername} died.");
+        StaticLogger.LogInfo($"{playerInfo.Username} died of {playerInfo.CauseOfDeath.ToString()}.");
     }
 }
