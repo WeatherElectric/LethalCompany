@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
+using WrongLibWithTheWrongTechnique.Modules;
 
 namespace WrongLibWithTheWrongTechnique;
 
@@ -21,5 +22,19 @@ public class Plugin : BaseUnityPlugin
         Logger.LogInfo($"Plugin {ModInfo.PluginGuid} is loaded, version {ModInfo.PluginVersion}.");
         StaticLogger = Logger;
         Harmony.PatchAll();
+        Hooking.OnLocalPlayerSpawn += OnLocalPlayerSpawn;
+        Hooking.OnPlayerDeath += OnPlayerDeath;
+    }
+
+    private static void OnLocalPlayerSpawn(object sender, PlayerSpawnEventArgs e)
+    {
+        StaticLogger.LogInfo($"Local player name is {e.Player.playerUsername}");
+        StaticLogger.LogInfo($"Local player object is {e.Player.name}");
+        StaticLogger.LogInfo($"Local player has {e.Player.health} health");
+    }
+    
+    private static void OnPlayerDeath(object sender, PlayerDeathEventArgs e)
+    {
+        StaticLogger.LogInfo($"{e.Player.playerUsername} died.");
     }
 }

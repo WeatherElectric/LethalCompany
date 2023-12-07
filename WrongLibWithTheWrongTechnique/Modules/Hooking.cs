@@ -18,13 +18,32 @@ public class PlayerDeathEventArgs : EventArgs
     public PlayerControllerB Player { get; }
 }
 
+public delegate void OnLocalPlayerSpawn(object sender, PlayerSpawnEventArgs e);
+
+public class PlayerSpawnEventArgs : EventArgs
+{
+    public PlayerSpawnEventArgs(PlayerControllerB player)
+    {
+        Player = player;
+    }
+
+    public PlayerControllerB Player { get; }
+}
+
 public class Hooking
 {
-    public event OnPlayerDeath OnPlayerDeath;
+    public static event OnPlayerDeath OnPlayerDeath;
+    
+    public static event OnLocalPlayerSpawn OnLocalPlayerSpawn;
 
     internal void onPlayerDeath(PlayerDeathEventArgs e)
     {
         OnPlayerDeath?.Invoke(this, e);
+    }
+    
+    internal void onLocalPlayerSpawn(PlayerSpawnEventArgs e)
+    {
+        OnLocalPlayerSpawn?.Invoke(this, e);
     }
 }
 
@@ -40,6 +59,18 @@ internal static class HookingPatches
         private static void Postfix(PlayerControllerB __instance)
         {
             HookingInstance.onPlayerDeath(new PlayerDeathEventArgs(__instance));
+        }
+    }
+    
+    [HarmonyPatch(typeof(PlayerControllerB))]
+    internal static class PlayerSpawn
+    {
+        [HarmonyPostfix]
+        [HarmonyPatch("Start")]
+        private static void Postfix(PlayerControllerB __instance)
+        {
+            if (!__instance.IsLocalPlayer) return;
+            HookingInstance.onLocalPlayerSpawn(new PlayerSpawnEventArgs(__instance));
         }
     }
 }
