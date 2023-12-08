@@ -28,6 +28,7 @@ public static class Player
     {
         LocalPlayer = playerInfo.Player;
         LocalPlayerName = playerInfo.Username;
+        Plugin.StaticLogger.LogInfo($"Local player ({LocalPlayer.gameObject.name}) spawned! Name: {LocalPlayerName}");
     }
     
     private static void OnPlayerJoin(PlayerInfo playerInfo)
@@ -36,6 +37,7 @@ public static class Player
         ConnectedPlayerNames.Add(playerInfo.Username);
         AllPlayers.Add(playerInfo.Player);
         AllPlayerNames.Add(playerInfo.Username);
+        Plugin.StaticLogger.LogInfo($"Player ({playerInfo.Player.gameObject.name}) joined! Name: {playerInfo.Username}");
     }
 
     private static void OnSceneUnloaded(LevelInfo levelInfo)
@@ -46,5 +48,6 @@ public static class Player
         ConnectedPlayerNames.Clear();
         AllPlayers.Clear();
         AllPlayerNames.Clear();
+        Plugin.StaticLogger.LogInfo("Scene unloaded, player data cleared.");
     }
 }
