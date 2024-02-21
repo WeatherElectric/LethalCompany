@@ -31,6 +31,7 @@ public static class TerminalConfig
         }
         if (e.SubmittedText.Contains("executive give"))
         {
+            if (!GameNetworkManager.Instance.isHostingGame) return;
             if (Plugin.OverrideMoney.Value)
                 terminal.groupCredits = Plugin.MoneyToGive.Value;
             else

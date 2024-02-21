@@ -4,7 +4,7 @@ using HarmonyLib;
 
 namespace CompanyExecutive
 {
-    [BepInPlugin("SoulWithMae.CompanyExecutive", PluginInfo.PLUGIN_NAME, "3.0.0")]
+    [BepInPlugin("SoulWithMae.CompanyExecutive", PluginInfo.PLUGIN_NAME, "3.0.1")]
     [BepInDependency("atomic.terminalapi")]
     public class Plugin : BaseUnityPlugin
     {
@@ -37,6 +37,7 @@ namespace CompanyExecutive
         [HarmonyPostfix]
         private static void Thingy(Terminal __instance, ref int ___groupCredits)
         {
+            if (!GameNetworkManager.Instance.isHostingGame) return;
             if (!Plugin.Enabled.Value) return;
             if (!Plugin.ConsistentGive.Value)
             {

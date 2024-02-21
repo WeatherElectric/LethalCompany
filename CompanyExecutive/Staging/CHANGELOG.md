@@ -1,3 +1,6 @@
+**v3.0.1**
+* Prevents it from working if you're not the host
+
 **v3.0.0**
 * Added terminal commands
 

@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockholmLib", "StockholmLi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackMesaInternTransferProgram", "BlackMesaInternTransferProgram\BlackMesaInternTransferProgram.csproj", "{43306DAC-166A-4928-ABD9-4BFB887CF9D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetAndHuh", "MeetAndHuh\MeetAndHuh.csproj", "{53E627A6-C73E-4DD5-998C-7A4677D09DD4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{43306DAC-166A-4928-ABD9-4BFB887CF9D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43306DAC-166A-4928-ABD9-4BFB887CF9D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43306DAC-166A-4928-ABD9-4BFB887CF9D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53E627A6-C73E-4DD5-998C-7A4677D09DD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53E627A6-C73E-4DD5-998C-7A4677D09DD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53E627A6-C73E-4DD5-998C-7A4677D09DD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53E627A6-C73E-4DD5-998C-7A4677D09DD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

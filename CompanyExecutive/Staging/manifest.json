@@ -1,6 +1,6 @@
 {
     "name": "CompanyExecutive",
-    "version_number": "3.0.0",
+    "version_number": "3.0.1",
     "website_url": "https://github.com/WeatherElectric/CompanyExecutive",
     "description": "You're an executive, who cares about money! (Infinite money)",
     "dependencies": [
