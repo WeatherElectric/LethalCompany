@@ -22,18 +22,19 @@ namespace MeetAndHuh
             Logger.LogInfo($"Plugin {ModInfo.PluginGuid} is loaded, version {ModInfo.PluginVersion}");
             _assets = AssetLoader.LoadEmbeddedAssetBundle(Assembly.GetExecutingAssembly(), "MeetAndHuh.Resources.Assets.pack");
             Logger.LogInfo("Loaded asset bundle. Registering items.");
-            const int stoonyRarity = 60;
-            const int maeRarity = 60;
-            const int nicoRarity = 60;
-            Item stoony = _assets.LoadAsset<Item>("Assets/Meet And Huh/Pyrastoony.asset");
+            const int rarity = 60;
+            Item stoony = _assets.LoadAsset<Item>("Assets/Meet And Huh/ThePyramidOfStoon.asset");
             Item mae = _assets.LoadAsset<Item>("Assets/Meet And Huh/Maeball.asset");
             Item nico = _assets.LoadAsset<Item>("Assets/Meet And Huh/Nicocube.asset");
+            Item dex = _assets.LoadAsset<Item>("Assets/Meet And Huh/Harlowcan.asset");
             NetworkPrefabs.RegisterNetworkPrefab(stoony.spawnPrefab);
-            Items.RegisterScrap(stoony, stoonyRarity, Levels.LevelTypes.All);
+            Items.RegisterScrap(stoony, rarity, Levels.LevelTypes.All);
             NetworkPrefabs.RegisterNetworkPrefab(mae.spawnPrefab);
-            Items.RegisterScrap(mae, maeRarity, Levels.LevelTypes.All);
+            Items.RegisterScrap(mae, rarity, Levels.LevelTypes.All);
             NetworkPrefabs.RegisterNetworkPrefab(nico.spawnPrefab);
-            Items.RegisterScrap(nico, nicoRarity, Levels.LevelTypes.All);
+            Items.RegisterScrap(nico, rarity, Levels.LevelTypes.All);
+            NetworkPrefabs.RegisterNetworkPrefab(dex.spawnPrefab);
+            Items.RegisterScrap(dex, rarity, Levels.LevelTypes.All);
             Logger.LogInfo("Registered items.");
         }
     }

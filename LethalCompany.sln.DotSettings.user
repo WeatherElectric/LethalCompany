@@ -10,4 +10,5 @@
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=I_003A_005CGitHub_005CRider_005CLethalCompany_005CReferences_005CUnity_002ENetcode_002ERuntime_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=I_003A_005CGitHub_005CRider_005CWeather_0020Electric_005CLethal_0020Company_005CMeetAndHuh_005CReferences_005CLethalLib_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=I_003A_005CGitHub_005CRider_005CWeather_0020Electric_005CLethal_0020Company_005CReferences_005CUnityEngine_002EAssetBundleModule_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=I_003A_005CGitHub_005CRider_005CWeather_0020Electric_005CLethal_0020Company_005CReferences_005CUnityEngine_002EAudioModule_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=8A9383AD_002D7C3E_002D4EF9_002D9F49_002D893C2039C98D_002Ff_003APlugin_002Ecs/@EntryIndexedValue">ExplicitlyExcluded</s:String></wpf:ResourceDictionary>
