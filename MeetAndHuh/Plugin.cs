@@ -23,7 +23,7 @@ namespace MeetAndHuh
             _assets = AssetLoader.LoadEmbeddedAssetBundle(Assembly.GetExecutingAssembly(), "MeetAndHuh.Resources.Assets.pack");
             Logger.LogInfo("Loaded asset bundle. Registering items.");
             const int rarity = 60;
-            Item stoony = _assets.LoadAsset<Item>("Assets/Meet And Huh/ThePyramidOfStoon.asset");
+            Item stoony = _assets.LoadAsset<Item>("Assets/Meet And Huh/Stoonyangle.asset");
             Item mae = _assets.LoadAsset<Item>("Assets/Meet And Huh/Maeball.asset");
             Item nico = _assets.LoadAsset<Item>("Assets/Meet And Huh/Nicocube.asset");
             Item dex = _assets.LoadAsset<Item>("Assets/Meet And Huh/Harlowcan.asset");
