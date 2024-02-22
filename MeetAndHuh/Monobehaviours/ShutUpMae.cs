@@ -1,14 +1,15 @@
 ﻿using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace MeetAndHuh.Monobehaviours
 {
+    [AddComponentMenu("Weather Electric/Friend Group Stuff/Shut Up Mae")]
     public class ShutUpMae : GrabbableObject
     {
         public AudioSource noiseAudio;
         public AudioSource musicAudio;
         public AudioClip[] noiseSfx;
+        [Space(3f)]
         public float noiseRange;
         public float maxLoudness;
         public float minLoudness;
