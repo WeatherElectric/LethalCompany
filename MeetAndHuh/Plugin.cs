@@ -28,6 +28,7 @@ namespace MeetAndHuh
             Item nico = _assets.LoadAsset<Item>("Assets/Meet And Huh/Nicocube.asset");
             Item dex = _assets.LoadAsset<Item>("Assets/Meet And Huh/Harlowcan.asset");
             Item ham = _assets.LoadAsset<Item>("Assets/Meet And Huh/Hamblob.asset");
+            Item z = _assets.LoadAsset<Item>("Assets/Meet And Huh/Zenithcone.asset");
             NetworkPrefabs.RegisterNetworkPrefab(stoony.spawnPrefab);
             Items.RegisterScrap(stoony, rarity, Levels.LevelTypes.All);
             NetworkPrefabs.RegisterNetworkPrefab(mae.spawnPrefab);
@@ -38,6 +39,8 @@ namespace MeetAndHuh
             Items.RegisterScrap(dex, rarity, Levels.LevelTypes.All);
             NetworkPrefabs.RegisterNetworkPrefab(ham.spawnPrefab);
             Items.RegisterScrap(ham, rarity, Levels.LevelTypes.All);
+            NetworkPrefabs.RegisterNetworkPrefab(z.spawnPrefab);
+            Items.RegisterScrap(z, rarity, Levels.LevelTypes.All);
             Logger.LogInfo("Registered items.");
         }
     }
