@@ -23,6 +23,7 @@ namespace MeetAndHuh
             _assets = AssetLoader.LoadEmbeddedAssetBundle(Assembly.GetExecutingAssembly(), "MeetAndHuh.Resources.Assets.pack");
             Logger.LogInfo("Loaded asset bundle. Registering items.");
             const int rarity = 60;
+            const int bigRarity = 45;
             Item stoony = _assets.LoadAsset<Item>("Assets/Meet And Huh/Stoonyangle.asset");
             Item mae = _assets.LoadAsset<Item>("Assets/Meet And Huh/Maeball.asset");
             Item nico = _assets.LoadAsset<Item>("Assets/Meet And Huh/Nicocube.asset");
@@ -30,6 +31,7 @@ namespace MeetAndHuh
             Item ham = _assets.LoadAsset<Item>("Assets/Meet And Huh/Hamblob.asset");
             Item z = _assets.LoadAsset<Item>("Assets/Meet And Huh/Zenithcone.asset");
             Item des = _assets.LoadAsset<Item>("Assets/Meet And Huh/Dessphere.asset");
+            Item amalgamation = _assets.LoadAsset<Item>("Assets/Meet And Huh/Amalgamation.asset");
             
             NetworkPrefabs.RegisterNetworkPrefab(stoony.spawnPrefab);
             Items.RegisterScrap(stoony, rarity, Levels.LevelTypes.All);
@@ -45,6 +47,8 @@ namespace MeetAndHuh
             Items.RegisterScrap(z, rarity, Levels.LevelTypes.All);
             NetworkPrefabs.RegisterNetworkPrefab(des.spawnPrefab);
             Items.RegisterScrap(des, rarity, Levels.LevelTypes.All);
+            NetworkPrefabs.RegisterNetworkPrefab(amalgamation.spawnPrefab);
+            Items.RegisterScrap(amalgamation, bigRarity, Levels.LevelTypes.All);
             Logger.LogInfo("Registered items.");
         }
     }
