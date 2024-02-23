@@ -4,3 +4,8 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 /References/
+*.zip
+.idea/.idea.LethalCompany/.idea/vcs.xml
+.idea/.idea.LethalCompany/.idea/.name
+.idea/.idea.LethalCompany/.idea/workspace.xml
+LethalCompany.sln.DotSettings.user
