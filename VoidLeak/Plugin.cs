@@ -1,14 +1,11 @@
-﻿using System.Reflection;
-using BepInEx;
-using UnityEngine;
-using LethalLib.Modules;
+﻿using BepInEx;
 
 namespace MeetAndHuh
 {
     public class ModInfo
     {
-        public const string PluginGuid = "SoulWithMae.MeetAndHuh";
-        public const string PluginName = "MeetAndHuh";
+        public const string PluginGuid = "SoulWithMae.VoidLeak";
+        public const string PluginName = "VoidLeak";
         public const string PluginVersion = "1.0.0";
     }
     
@@ -21,8 +18,7 @@ namespace MeetAndHuh
             Logger.LogInfo($"Plugin {ModInfo.PluginGuid} is loaded, version {ModInfo.PluginVersion}");
             AssetLoader.LoadBundle();
             Logger.LogInfo("Loaded asset bundle. Registering items.");
-            AssetLoader.LoadGeometry();
-            AssetLoader.LoadMarrow();
+            AssetLoader.LoadItems();
             Logger.LogInfo("Registered items.");
         }
     }

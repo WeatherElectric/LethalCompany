@@ -1,0 +1,88 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Description>Removes all enemies, useful for practicing runs</Description>
+        <Version>1.0.0</Version>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <Company>SoulWithMae</Company>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <FileVersion>1.0.0.0</FileVersion>
+        <Product>MeetAndHuh</Product>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
+        <PackageReference Include="BepInEx.Core" Version="5.*"/>
+        <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="NuGet.Config" />
+      <None Remove="References\**" />
+      <None Remove=".gitignore" />
+      <None Remove="README.md" />
+      <None Remove="Staging\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="References\**" />
+      <Compile Remove="Staging\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="References\**" />
+      <EmbeddedResource Remove="Staging\**" />
+      <None Remove="Resources\Assets.pack" />
+      <EmbeddedResource Include="Resources\Assets.pack" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ReferencePathWithRefAssemblies Update="C:\Users\Maya\.nuget\packages\unityengine.modules\5.6.0\lib\netstandard2.0\UnityEngine.dll" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Assembly-CSharp">
+        <HintPath>..\References\Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="LethalLib">
+        <HintPath>References\LethalLib.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.AI.Navigation">
+        <HintPath>..\References\Unity.AI.Navigation.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Netcode.Runtime">
+        <HintPath>..\References\Unity.Netcode.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>..\References\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AIModule">
+        <HintPath>..\References\UnityEngine.AIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AssetBundleModule">
+        <HintPath>..\References\UnityEngine.AssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AudioModule">
+        <HintPath>..\References\UnityEngine.AudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>..\References\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ParticleSystemModule">
+        <HintPath>..\References\UnityEngine.ParticleSystemModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PhysicsModule">
+        <HintPath>..\References\UnityEngine.PhysicsModule.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+      <Exec Command="COPY &quot;$(TargetPath)&quot; &quot;H:\Games\Steam\steamapps\common\Lethal Company\BepInEx\plugins&quot;&#xA;COPY &quot;$(TargetPath)&quot; &quot;$(ProjectDir)Staging\BepInEx\plugins&quot;" />
+    </Target>
+</Project>
