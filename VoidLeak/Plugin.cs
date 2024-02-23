@@ -1,6 +1,6 @@
 ﻿using BepInEx;
 
-namespace MeetAndHuh
+namespace VoidLeak
 {
     public class ModInfo
     {

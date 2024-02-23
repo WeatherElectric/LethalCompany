@@ -39,7 +39,7 @@
       <EmbeddedResource Remove="References\**" />
       <EmbeddedResource Remove="Staging\**" />
       <None Remove="Resources\Assets.pack" />
-      <EmbeddedResource Include="Resources\Assets.pack" />
+      <EmbeddedResource Include="Resources\voidleak" />
     </ItemGroup>
 
     <ItemGroup>
