@@ -24,8 +24,7 @@ public class SpawnGun : GrabbableObject
         var ray = new Ray(firePoint.position, firePoint.forward);
         if (Physics.Raycast(ray, out var hit, raycastDistance))
         {
-            var obj = Instantiate(spawnObject, hit.point, Quaternion.identity);
-            Instantiate(obj);
+            Instantiate(spawnObject, hit.point, Quaternion.identity);
             spawnAudio.Play();
         }
     }

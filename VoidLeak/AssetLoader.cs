@@ -54,6 +54,6 @@ public static class AssetLoader
         NetworkPrefabs.RegisterNetworkPrefab(bottle.spawnPrefab);
         Items.RegisterScrap(bottle, CheapItemRarity, Levels.LevelTypes.All);
         NetworkPrefabs.RegisterNetworkPrefab(spawnGun.spawnPrefab);
-        Items.RegisterScrap(spawnGun, DebugRarity, Levels.LevelTypes.All);
+        Items.RegisterScrap(spawnGun, ExpensiveItemRarity, Levels.LevelTypes.All);
     }
 }

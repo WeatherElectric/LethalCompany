@@ -11,28 +11,15 @@ public class DestroyOnTimer : NetworkBehaviour
     public GameObject objectToDestroy;
     [Space(10f)]
     [Tooltip("The time to destroy the object.")]
-    public float timeToDestroy = 10f;
+    public float timeToDestroy = 5f;
     
     private void Start()
     {
-        DestroyServerRpc();
-    }
-    
-    [ServerRpc(RequireOwnership = false)]
-    private void DestroyServerRpc()
-    {
-        DestroyClientRpc();
-    }
-    
-    [ClientRpc]
-    private void DestroyClientRpc()
-    {
         StartCoroutine(Destroy(objectToDestroy == null ? gameObject : objectToDestroy, timeToDestroy));
     }
-    
     private new static IEnumerator Destroy(Object obj, float time)
     {
         yield return new WaitForSeconds(time);
-        Destroy(obj);
+        Object.Destroy(obj);
     }
 }
