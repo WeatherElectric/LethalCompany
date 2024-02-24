@@ -2,14 +2,14 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
-        <Description>Removes all enemies, useful for practicing runs</Description>
+        <Description>AssetWarehouse had a breach. (BONELAB/BONEWORKS scrap items)</Description>
         <Version>1.0.0</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
         <Company>SoulWithMae</Company>
         <AssemblyVersion>1.0.0.0</AssemblyVersion>
         <FileVersion>1.0.0.0</FileVersion>
-        <Product>MeetAndHuh</Product>
+        <Product>VoidLeak</Product>
     </PropertyGroup>
 
     <ItemGroup>
@@ -39,7 +39,6 @@
       <EmbeddedResource Remove="References\**" />
       <EmbeddedResource Remove="Staging\**" />
       <None Remove="Resources\Assets.pack" />
-      <EmbeddedResource Include="Resources\voidleak" />
     </ItemGroup>
 
     <ItemGroup>
@@ -83,6 +82,6 @@
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-      <Exec Command="COPY &quot;$(TargetPath)&quot; &quot;H:\Games\Steam\steamapps\common\Lethal Company\BepInEx\plugins&quot;&#xA;COPY &quot;$(TargetPath)&quot; &quot;$(ProjectDir)Staging\BepInEx\plugins&quot;" />
+        <Exec Command="COPY &quot;H:\Apps\Unity\Projects\Lethal Company Ripped\BuiltBundles\voidleak&quot; &quot;$(ProjectDir)Staging\BepInEx\plugins&quot;&#xA;COPY &quot;$(TargetPath)&quot; &quot;$(ProjectDir)Staging\BepInEx\plugins&quot;" />
     </Target>
 </Project>

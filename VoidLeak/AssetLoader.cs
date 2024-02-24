@@ -17,7 +17,16 @@ public static class AssetLoader
 
     public static void LoadBundle()
     {
-        _assets = LoadEmbeddedAssetBundle(Assembly.GetExecutingAssembly(), "VoidLeak.Resources.voidleak");
+        var assemblyLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        if (assemblyLocation != null)
+        {
+            _assets = AssetBundle.LoadFromFile(Path.Combine(assemblyLocation, "voidleak"));
+        }
+        else
+        {
+            Plugin.mls.LogError("Failed to load asset bundle.");
+            Plugin.mls.LogError("Check if the asset bundle is in the same directory as the plugin.");
+        }
     }
 
     private const string AssetsPath = "Assets/VoidLeak";
@@ -37,22 +46,4 @@ public static class AssetLoader
         NetworkPrefabs.RegisterNetworkPrefab(crablet.spawnPrefab);
         Items.RegisterScrap(crablet, SmallItemRarity, Levels.LevelTypes.All);
     }
-
-    private static AssetBundle LoadEmbeddedAssetBundle(Assembly assembly, string name)
-    {
-        string[] manifestResources = assembly.GetManifestResourceNames();
-        AssetBundle bundle = null;
-        if (manifestResources.Contains(name))
-        {
-            using Stream str = assembly.GetManifestResourceStream(name);
-            using MemoryStream memoryStream = new MemoryStream();
-
-            str?.CopyTo(memoryStream);
-            byte[] resource = memoryStream.ToArray();
-            
-            bundle = AssetBundle.LoadFromMemory(resource);
-        }
-        return bundle;
-    }
-
 }

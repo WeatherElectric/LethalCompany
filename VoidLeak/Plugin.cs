@@ -1,4 +1,7 @@
-﻿using BepInEx;
+﻿using System.Reflection;
+using BepInEx;
+using BepInEx.Logging;
+using UnityEngine;
 
 namespace VoidLeak
 {
@@ -13,8 +16,25 @@ namespace VoidLeak
     [BepInDependency(LethalLib.Plugin.ModGUID)]
     public class Plugin : BaseUnityPlugin
     {
+        internal static ManualLogSource mls;
         private void Awake()
         {
+            mls = Logger;
+            
+            var types = Assembly.GetExecutingAssembly().GetTypes();
+            foreach (var type in types)
+            {
+                var methods = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
+                foreach (var method in methods)
+                {
+                    var attributes = method.GetCustomAttributes(typeof(RuntimeInitializeOnLoadMethodAttribute), false);
+                    if (attributes.Length > 0)
+                    {
+                        method.Invoke(null, null);
+                    }
+                }
+            }
+            
             Logger.LogInfo($"Plugin {ModInfo.PluginGuid} is loaded, version {ModInfo.PluginVersion}");
             AssetLoader.LoadBundle();
             Logger.LogInfo("Loaded asset bundle. Registering items.");
