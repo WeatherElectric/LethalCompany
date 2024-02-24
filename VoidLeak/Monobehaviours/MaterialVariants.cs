@@ -11,6 +11,13 @@ public class MaterialVariants : NetworkBehaviour
     [Space(5f)]
     [Tooltip("The mesh renderers to change the material of. This will use the first material in the array.")]
     public MeshRenderer[] meshRenderers;
+    [Space(5f)]
+    public bool ChangeScanNodeText;
+    [Tooltip("The text to change to when the material is changed.")]
+    public string[] scanNodeText;
+    [Space(5f)]
+    [Tooltip("The scan node properties to change the text of.")]
+    public ScanNodeProperties scanNodeProperties;
     
     private readonly NetworkVariable<int> _materialVariant = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     
@@ -35,6 +42,7 @@ public class MaterialVariants : NetworkBehaviour
         foreach (var renderer in meshRenderers)
         {
             renderer.material = itemData.materialVariants[_materialVariant.Value];
+            if (ChangeScanNodeText) scanNodeProperties.headerText = scanNodeText[_materialVariant.Value];
         }
     }
 }

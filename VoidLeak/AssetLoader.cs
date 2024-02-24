@@ -8,7 +8,8 @@ namespace VoidLeak;
 public static class AssetLoader
 {
     private static AssetBundle _assets;
-    
+
+    private const int CheapItemRarity = 75;
     private const int SmallItemRarity = 50;
     private const int BigItemRarity = 45;
     private const int ExpensiveItemRarity = 30;
@@ -37,6 +38,7 @@ public static class AssetLoader
         Item goldenApollo = _assets.LoadAsset<Item>($"{AssetsPath}/GoldApollo.asset");
         Item crablet = _assets.LoadAsset<Item>($"{AssetsPath}/Headset.asset");
         Item crowbar = _assets.LoadAsset<Item>($"{AssetsPath}/Crowbar.asset");
+        Item bottle = _assets.LoadAsset<Item>($"{AssetsPath}/Bottle.asset");
             
         NetworkPrefabs.RegisterNetworkPrefab(apollo.spawnPrefab);
         Items.RegisterScrap(apollo, SmallItemRarity, Levels.LevelTypes.All);
@@ -48,5 +50,7 @@ public static class AssetLoader
         Items.RegisterScrap(crablet, SmallItemRarity, Levels.LevelTypes.All);
         NetworkPrefabs.RegisterNetworkPrefab(crowbar.spawnPrefab);
         Items.RegisterScrap(crowbar, SmallItemRarity, Levels.LevelTypes.All);
+        NetworkPrefabs.RegisterNetworkPrefab(bottle.spawnPrefab);
+        Items.RegisterScrap(bottle, CheapItemRarity, Levels.LevelTypes.All);
     }
 }
