@@ -28,7 +28,7 @@ public class SpawnGun : GrabbableObject
             Instantiate(spawnObject, hit.point, Quaternion.identity);
             spawnAudio.Play();
         }
-        if (insertedBattery.charge > 0) insertedBattery.charge -= 0.25f;
+        if (insertedBattery.charge > 0) insertedBattery.charge -= 0.1f;
     }
     
     public override void DiscardItem()
