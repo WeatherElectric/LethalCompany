@@ -36,6 +36,7 @@ public static class AssetLoader
         Item blueApollo = _assets.LoadAsset<Item>($"{AssetsPath}/BlueApollo.asset");
         Item goldenApollo = _assets.LoadAsset<Item>($"{AssetsPath}/GoldApollo.asset");
         Item crablet = _assets.LoadAsset<Item>($"{AssetsPath}/Headset.asset");
+        Item crowbar = _assets.LoadAsset<Item>($"{AssetsPath}/Crowbar.asset");
             
         NetworkPrefabs.RegisterNetworkPrefab(apollo.spawnPrefab);
         Items.RegisterScrap(apollo, SmallItemRarity, Levels.LevelTypes.All);
@@ -45,5 +46,7 @@ public static class AssetLoader
         Items.RegisterScrap(goldenApollo, ExpensiveItemRarity, Levels.LevelTypes.All);
         NetworkPrefabs.RegisterNetworkPrefab(crablet.spawnPrefab);
         Items.RegisterScrap(crablet, SmallItemRarity, Levels.LevelTypes.All);
+        NetworkPrefabs.RegisterNetworkPrefab(crowbar.spawnPrefab);
+        Items.RegisterScrap(crowbar, SmallItemRarity, Levels.LevelTypes.All);
     }
 }
