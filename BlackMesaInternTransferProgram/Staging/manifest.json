@@ -1,9 +1,0 @@
-{
-    "name": "BlackMesaInternTransferProgram",
-    "version_number": "1.1.0",
-    "website_url": "https://github.com/WeatherElectric/LethalCompany/tree/master/BlackMesaInternTransferProgram",
-    "description": "Plays a Half Life Scientist scream for each player death.",
-    "dependencies": [
-        "BepInEx-BepInExPack-5.4.2100"
-    ]
-}
