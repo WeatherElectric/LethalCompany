@@ -19,6 +19,7 @@ public class SpawnGun : GrabbableObject
 
     public override void ItemActivate(bool used, bool buttonDown = true)
     {
+        if (insertedBattery.charge <= 0) return;
         base.ItemActivate(used, buttonDown);
         if (GameNetworkManager.Instance.localPlayerController == null) return;
         var ray = new Ray(firePoint.position, firePoint.forward);
@@ -27,6 +28,7 @@ public class SpawnGun : GrabbableObject
             Instantiate(spawnObject, hit.point, Quaternion.identity);
             spawnAudio.Play();
         }
+        if (insertedBattery.charge > 0) insertedBattery.charge -= 0.25f;
     }
     
     public override void DiscardItem()
