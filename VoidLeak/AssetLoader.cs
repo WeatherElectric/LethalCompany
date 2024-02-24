@@ -39,6 +39,7 @@ public static class AssetLoader
         Item crablet = _assets.LoadAsset<Item>($"{AssetsPath}/Headset.asset");
         Item crowbar = _assets.LoadAsset<Item>($"{AssetsPath}/Crowbar.asset");
         Item bottle = _assets.LoadAsset<Item>($"{AssetsPath}/Bottle.asset");
+        Item spawnGun = _assets.LoadAsset<Item>($"{AssetsPath}/SpawnGun.asset");
             
         NetworkPrefabs.RegisterNetworkPrefab(apollo.spawnPrefab);
         Items.RegisterScrap(apollo, SmallItemRarity, Levels.LevelTypes.All);
@@ -52,5 +53,7 @@ public static class AssetLoader
         Items.RegisterScrap(crowbar, SmallItemRarity, Levels.LevelTypes.All);
         NetworkPrefabs.RegisterNetworkPrefab(bottle.spawnPrefab);
         Items.RegisterScrap(bottle, CheapItemRarity, Levels.LevelTypes.All);
+        NetworkPrefabs.RegisterNetworkPrefab(spawnGun.spawnPrefab);
+        Items.RegisterScrap(spawnGun, DebugRarity, Levels.LevelTypes.All);
     }
 }
