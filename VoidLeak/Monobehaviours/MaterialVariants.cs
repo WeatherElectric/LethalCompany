@@ -1,5 +1,4 @@
-﻿using System;
-using Unity.Netcode;
+﻿using Unity.Netcode;
 using UnityEngine;
 
 namespace VoidLeak.Monobehaviours;
@@ -10,8 +9,10 @@ public class MaterialVariants : NetworkBehaviour
     [Tooltip("The item data of the scrap.")]
     public Item itemData;
     [Space(5f)]
-    [Tooltip("The mesh renderers to change the material of.")]
-    public VariantRenderers[] meshRenderers;
+    [Tooltip("The mesh renderers to change the material of. This will use the first material in the array.")]
+    public MeshRenderer[] meshRenderers;
+    
+    private readonly NetworkVariable<int> _materialVariant = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     
     private void Start()
     {
@@ -27,20 +28,13 @@ public class MaterialVariants : NetworkBehaviour
     [ClientRpc]
     private void SetRendererClientRpc()
     {
-        int variant = UnityEngine.Random.Range(0, itemData.materialVariants.Length);
+        if (IsHost)
+        {
+            _materialVariant.Value = Random.Range(0, itemData.materialVariants.Length);
+        }
         foreach (var renderer in meshRenderers)
         {
-            renderer.meshRenderer.materials[renderer.materialIndex] = itemData.materialVariants[variant];
+            renderer.material = itemData.materialVariants[_materialVariant.Value];
         }
     }
-}
-
-[Serializable]
-public class VariantRenderers
-{
-    [Tooltip("The mesh renderer to change the material of.")]
-    public MeshRenderer meshRenderer;
-    [Space(5f)]
-    [Tooltip("The index of the material to change.")]
-    public int materialIndex;
 }
