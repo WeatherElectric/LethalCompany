@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Linq;
 using System.Reflection;
 using LethalLib.Modules;
 using UnityEngine;
@@ -13,6 +12,7 @@ public static class AssetLoader
     private const int SmallItemRarity = 50;
     private const int BigItemRarity = 45;
     private const int ExpensiveItemRarity = 30;
+    private const int SuperExpensiveItemRarity = 15;
     private const int DebugRarity = 100;
 
     public static void LoadBundle()
@@ -43,7 +43,7 @@ public static class AssetLoader
         NetworkPrefabs.RegisterNetworkPrefab(blueApollo.spawnPrefab);
         Items.RegisterScrap(blueApollo, SmallItemRarity, Levels.LevelTypes.All);
         NetworkPrefabs.RegisterNetworkPrefab(goldenApollo.spawnPrefab);
-        Items.RegisterScrap(goldenApollo, ExpensiveItemRarity, Levels.LevelTypes.All);
+        Items.RegisterScrap(goldenApollo, SuperExpensiveItemRarity, Levels.LevelTypes.All);
         NetworkPrefabs.RegisterNetworkPrefab(crablet.spawnPrefab);
         Items.RegisterScrap(crablet, SmallItemRarity, Levels.LevelTypes.All);
         NetworkPrefabs.RegisterNetworkPrefab(crowbar.spawnPrefab);

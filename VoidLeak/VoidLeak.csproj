@@ -82,6 +82,10 @@
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-        <Exec Command="COPY &quot;H:\Apps\Unity\Projects\Lethal Company Ripped\BuiltBundles\voidleak&quot; &quot;$(ProjectDir)Staging\BepInEx\plugins&quot;&#xA;COPY &quot;$(TargetPath)&quot; &quot;$(ProjectDir)Staging\BepInEx\plugins&quot;" />
+      <Exec Command="COPY &quot;$(TargetPath)&quot; &quot;$(ProjectDir)Staging\BepInEx\plugins&quot;" />
+    </Target>
+
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+      <Exec Command="COPY &quot;H:\Apps\Unity\Projects\Lethal Company Ripped\BuiltBundles\voidleak&quot; &quot;$(ProjectDir)Staging\BepInEx\plugins&quot;" />
     </Target>
 </Project>
