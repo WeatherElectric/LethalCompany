@@ -46,6 +46,9 @@ public static class AssetLoader
         Item spawnGun = _assets.LoadAsset<Item>($"{AssetsPath}/SpawnGun.asset");
         Item lunarLander = _assets.LoadAsset<Item>($"{AssetsPath}/LunarLander.asset");
         Item skull = _assets.LoadAsset<Item>($"{AssetsPath}/SkeleSkull.asset");
+        Item coroutineBarrel = _assets.LoadAsset<Item>($"{AssetsPath}/BarrelCoroutine.asset");
+        Item memoryBarrel = _assets.LoadAsset<Item>($"{AssetsPath}/BarrelMemoryLeak.asset");
+        Item plasticBarrel = _assets.LoadAsset<Item>($"{AssetsPath}/PlasticBarrel.asset");
             
         NetworkPrefabs.RegisterNetworkPrefab(apollo.spawnPrefab);
         Items.RegisterScrap(apollo, SmallItemRarity, Levels.LevelTypes.All);
@@ -77,5 +80,14 @@ public static class AssetLoader
         
         NetworkPrefabs.RegisterNetworkPrefab(skull.spawnPrefab);
         Items.RegisterScrap(skull, ExpensiveItemRarity, Levels.LevelTypes.All);
+        
+        NetworkPrefabs.RegisterNetworkPrefab(coroutineBarrel.spawnPrefab);
+        Items.RegisterScrap(coroutineBarrel, BigItemRarity, Levels.LevelTypes.All);
+        
+        NetworkPrefabs.RegisterNetworkPrefab(memoryBarrel.spawnPrefab);
+        Items.RegisterScrap(memoryBarrel, BigItemRarity, Levels.LevelTypes.All);
+        
+        NetworkPrefabs.RegisterNetworkPrefab(plasticBarrel.spawnPrefab);
+        Items.RegisterScrap(plasticBarrel, BigItemRarity, Levels.LevelTypes.All);
     }
 }
